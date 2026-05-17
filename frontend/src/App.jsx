@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 function App() {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
+  const [searchMovie, setSearchMovie] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:8000/movies')
@@ -21,11 +22,20 @@ function App() {
     )
   }
 
+  const searchMovieChange = (e) => {
+    const searchTerm = e.target.value;
+    setSearchMovie(searchTerm);
+  }
+
+  const filteredMovies = movies.filter(m => m.title.toLowerCase().includes(searchMovie.toLowerCase()));
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
+      <p>{searchMovie}</p>
       <h1 className="text-3xl font-bold text-gray-900 mb-6">My Movies</h1>
+      <input type="text" placeholder="Search...." onChange={searchMovieChange} value={searchMovie}/> 
       <ul className="space-y-3">
-        {movies.map(movie => (
+        {filteredMovies.map(movie => (
           <li key={movie.id} className="bg-white p-4 rounded shadow">
             <h2 className="text-xl font-semibold">{movie.title}</h2>
             <p className="text-gray-600">{movie.year} — directed by {movie.director}</p>
