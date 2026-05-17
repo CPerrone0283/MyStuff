@@ -31,7 +31,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <p>{searchMovie}</p>
       <h1 className="text-3xl font-bold text-gray-900 mb-6">My Movies</h1>
       <input type="text" placeholder="Search...." onChange={searchMovieChange} value={searchMovie}/> 
       <ul className="space-y-3">
