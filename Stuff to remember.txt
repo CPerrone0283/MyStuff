@@ -6,3 +6,6 @@ cd C:\Projects\MyStuff\frontend
 
 npm run dev to run the front end 
 uvicorn main:app for back end
+
+uvicorn main:app --reload
+

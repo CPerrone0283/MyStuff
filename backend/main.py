@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine
 import models
-from routers import movies
+from routers import movies, albums
 
 app = FastAPI()
 
@@ -16,6 +16,8 @@ app.add_middleware(
 )
 
 app.include_router(movies.router)
+app.include_router(albums.router)
+
 
 
 @app.get("/")
