@@ -2,7 +2,7 @@ import enum
 from sqlalchemy import Column, Integer, String, Enum
 from models.item import Item
 
-class MusicGenre(enum.Enum):
+class MusicGenre(str, enum.Enum):
     HEAVY_METAL = "Heavy Metal"
     HARD_ROCK = "Hard Rock"
     THRASH_METAL = "Thrash Metal"
@@ -10,10 +10,11 @@ class MusicGenre(enum.Enum):
     DEATH_METAL = "Death Metal"
     PUNK = "Punk"
     RAP = "Rap"
+    POP = "Pop"
     COMEDY = "Comedy"
     SOUNDTRACK = "Soundtrack"
 
-class AlbumType(enum.Enum):
+class AlbumType(str, enum.Enum):
     STUDIO = "Studio"
     LIVE = "Live"
     EP = "EP"

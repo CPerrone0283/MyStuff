@@ -26,3 +26,5 @@ class AlbumUpdate(BaseModel):
     year: int | None = None
     genre: MusicGenre | None = None
     type: AlbumType | None = None
+
+
