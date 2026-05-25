@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import AlbumForm from '../albums/AlbumForm'
+import AlbumList from '../albums/AlbumList'
 
 
 
@@ -29,6 +30,7 @@ function AlbumsPage()
       <>
       <h1 className="text-3xl font-bold text-gray-900 mb-6">My Albums</h1>
       <AlbumForm/>
+      <AlbumList albums={albums}/>
       </>
 
 
@@ -38,9 +40,5 @@ function AlbumsPage()
 
 
 }
-
-
-
-
 
 export default AlbumsPage
