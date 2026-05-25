@@ -18,10 +18,6 @@ def get_album(album_id: int, response_model=AlbumResponse, db: Session = Depends
         raise HTTPException(status_code=404, detail="Album not found")
     return album
     
-
-
-
-
 @router.post("", response_model=AlbumResponse, status_code=201)
 def create_album(album: AlbumCreate, db: Session = Depends(get_db)):
     db_album = models.Album(
@@ -36,4 +32,27 @@ def create_album(album: AlbumCreate, db: Session = Depends(get_db)):
     db.refresh(db_album)
     return db_album
 
+@router.patch("/{album_id}", response_model=AlbumResponse)
+def update_album(album_id: int, album_update:AlbumUpdate, db: Session = Depends(get_db)):
+        db_album = db.query(models.Album).filter(models.Album.id == album_id).first()
+        if db_album is None:
+            raise HTTPException(status_code=404, detail="Album not found")
+
+        update_data = album_update.model_dump(exclude_unset=True)
+        for field, value in update_data.items():
+            setattr(db_album, field, value)
+
+        db.commit()
+        db.refresh(db_album)
+        return db_album       
+
+
+@router.delete("/{album_id}", status_code=204)
+def delete_album(album_id: int, db: Session = Depends(get_db)):
+     deleted_album = db.query(models.Album).filter(models.Album.id == album_id).first()
+     if deleted_album is None:
+        raise HTTPException(status_code=404, detail="Album not found")
+     db.delete(deleted_album)
+     db.commit()
+     return None
 
