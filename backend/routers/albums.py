@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db
 import models
+from models.album import MusicGenre, AlbumType
 from schemas import AlbumCreate, AlbumResponse, AlbumUpdate
 
 router = APIRouter(prefix="/albums", tags=["albums"])
@@ -55,4 +56,14 @@ def delete_album(album_id: int, db: Session = Depends(get_db)):
      db.delete(deleted_album)
      db.commit()
      return None
+
+
+@router.get("/enums", status_code=200)
+def get_enums():
+    return {
+        "genres": [{"value": g.name, "label": g.value} for g in MusicGenre],
+        "albumTypes":  [{"value": a.name, "label": a.value} for a in AlbumType]
+    }
+
+    
 

@@ -11,6 +11,9 @@ function AlbumsPage()
 {
   const [albums, setAlbums] = useState([])
   const [loading, setLoading] = useState(true)
+  const [genres, setGenres] = useState([])
+  const [albumTypes, setAlbumTypes] = useState([])
+
 
     useEffect(() => {
     fetch('http://localhost:8000/albums')
@@ -18,6 +21,15 @@ function AlbumsPage()
       .then(data => {
         setAlbums(data)
         setLoading(false)
+      })
+  }, [])
+
+    useEffect(() => {
+    fetch('http://localhost:8000/albums/enums')
+      .then(response => response.json())
+      .then(data => {
+        setGenres(data.genres)
+        setAlbumTypes(data.albumTypes)
       })
   }, [])
 
@@ -29,7 +41,7 @@ function AlbumsPage()
       body: JSON.stringify(albumData),
     })
     const createdAlbum = await response.json()
-    setMovies([...albums, createdAlbum])
+    setAlbums([...albums, createdAlbum])
   }
 
 
@@ -40,7 +52,7 @@ function AlbumsPage()
   return (
       <>
       <h1 className="text-3xl font-bold text-gray-900 mb-6">My Albums</h1>
-      <AlbumForm/>
+      <AlbumForm allGenres={genres} allAlbumTypes={albumTypes}/>
       <AlbumList albums={albums}/>
       </>
 

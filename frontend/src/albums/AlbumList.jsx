@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import AlbumListItem from './AlbumListItem'
 
-function AlbumList({albums}) {
+function AlbumList({albums, onSave}) {
 
   return (
     <ul className="space-y-3">
