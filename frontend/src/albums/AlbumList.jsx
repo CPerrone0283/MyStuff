@@ -3,16 +3,18 @@ import AlbumListItem from './AlbumListItem'
 
 function AlbumList({albums}) {
 
- 
-console.log("Album List")
-console.log(albums)
-
-
   return (
-    <>
-        <h1>Something</h1>
-    </>
+    <ul className="space-y-3">
+      { albums.map(album => (
+        <AlbumListItem
+          key={album.id}
+          album={album}
+        />
+      ))}
+    </ul>
   )
+
+
 }
 
 export default AlbumList

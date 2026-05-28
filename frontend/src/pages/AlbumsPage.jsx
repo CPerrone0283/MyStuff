@@ -13,13 +13,24 @@ function AlbumsPage()
   const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-    fetch('http://localhost:8000/movies')
+    fetch('http://localhost:8000/albums')
       .then(response => response.json())
       .then(data => {
         setAlbums(data)
         setLoading(false)
       })
   }, [])
+
+
+    const handleCreate = async (albumData) => {
+    const response = await fetch('http://localhost:8000/albums', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(albumData),
+    })
+    const createdAlbum = await response.json()
+    setMovies([...albums, createdAlbum])
+  }
 
 
 
