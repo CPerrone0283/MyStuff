@@ -3,25 +3,25 @@ from sqlalchemy import Column, Integer, String, Enum
 from models.item import Item
 
 class MusicGenre(str, enum.Enum):
-    HEAVY_METAL = "Heavy Metal"
-    HARD_ROCK = "Hard Rock"
-    THRASH_METAL = "Thrash Metal"
-    POWER_METAL = "Power Metal"
-    DEATH_METAL = "Death Metal"
-    PUNK = "Punk"
-    RAP = "Rap"
-    POP = "Pop"
-    COMEDY = "Comedy"
-    SOUNDTRACK = "Soundtrack"
+    HEAVY_METAL = "HEAVY_METAL"
+    HARD_ROCK = "HARD_ROCK"
+    THRASH_METAL = "THRASH_METAL"
+    POWER_METAL = "POWER_METAL"
+    DEATH_METAL = "DEATH_METAL"
+    PUNK = "PUNK"
+    RAP = "RAP"
+    POP = "POP"
+    COMEDY = "COMEDY"
+    SOUNDTRACK = "SOUNDTRACK"
 
 class AlbumType(str, enum.Enum):
-    STUDIO = "Studio"
-    LIVE = "Live"
+    STUDIO = "STUDIO"
+    LIVE = "LIVE"
     EP = "EP"
-    COMPILATION = "Compilation"
-    BOXED_SET = "Boxed Set"
-    RARITIES = "Rarities"
-    OTHER = "Other"
+    COMPILATION = "COMPILATION"
+    BOXED_SET = "BOXED_SET"
+    RARITIES = "RARITIES"
+    OTHER = "OTHER"
 
 
 class Album(Item):
@@ -31,6 +31,6 @@ class Album(Item):
     artist = Column(String, nullable=False)
     year = Column(Integer, nullable=False)
     genre = Column(Enum(MusicGenre), nullable=False)
-    type = Column(Enum(AlbumType), nullable=False) 
+    albumType = Column(Enum(AlbumType), nullable=False) 
 
 

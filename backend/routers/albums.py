@@ -26,7 +26,7 @@ def create_album(album: AlbumCreate, db: Session = Depends(get_db)):
         title = album.title,
         year = album.year,
         genre = album.genre,
-        type = album.type
+        albumType = album.albumType
     )
     db.add(db_album)
     db.commit()

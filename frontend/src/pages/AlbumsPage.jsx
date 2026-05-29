@@ -52,7 +52,7 @@ function AlbumsPage()
   return (
       <>
       <h1 className="text-3xl font-bold text-gray-900 mb-6">My Albums</h1>
-      <AlbumForm allGenres={genres} allAlbumTypes={albumTypes}/>
+      <AlbumForm allGenres={genres} allAlbumTypes={albumTypes} onSubmit={handleCreate}/>
       <AlbumList albums={albums}/>
       </>
 

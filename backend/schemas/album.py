@@ -6,7 +6,7 @@ class AlbumCreate(BaseModel):
     artist: str
     year: int
     genre: MusicGenre
-    type: AlbumType
+    albumType: AlbumType
     
 
 class AlbumResponse(BaseModel):
@@ -15,7 +15,7 @@ class AlbumResponse(BaseModel):
     artist: str
     year: int
     genre: MusicGenre
-    type: AlbumType
+    albumType: AlbumType
 
     class Config:
         from_attributes = True
@@ -25,6 +25,6 @@ class AlbumUpdate(BaseModel):
     artist: str | None = None
     year: int | None = None
     genre: MusicGenre | None = None
-    type: AlbumType | None = None
+    albumType: AlbumType | None = None
 
 
